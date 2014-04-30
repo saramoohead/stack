@@ -1,0 +1,38 @@
+<h2>
+	<%= link_to @story.title, @story.link %>
+</h2>
+
+<p><%= @story.description %></p>
+<p><%= @story.created_at %></p>
+
+<h3><%= pluralize @story.votes.size, "vote" %></h3>
+
+<div class="actions">
+
+	<%= link_to "Vote up", story_votes_path(@story), method: :post %>
+<!-- must include a methos because this is sending rather than just getting. 
+	and the colon is there because there are only four things you can go as a method -->
+
+	<%= link_to "Edit", edit_story_path(@story), class: "edit" %>
+	<%= link_to "Delete", story_path(@story), method: :delete, 
+		data: { confirm: "Are you sure?" }, class: "delete" %>	
+</div>
+
+<h3><%= pluralize @story.comments.size, "comment" %></h3>
+<!-- pluralize this word based on how many comments there are -->
+
+<% @story.comments.each do |comment| %>
+
+	<div class="comment">
+		<%= simple_format comment.body %>
+		<p><%= time_ago_in_words comment.created_at %> ago</p>
+	</div>
+
+<% end %>
+
+<p>
+	<%= link_to "Add a comment", new_story_comment_path(@story) %>
+</p>
+
+<p><%= link_to "Back to homepage", root_path %></p>
+

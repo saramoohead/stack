@@ -1,0 +1,15 @@
+<%=simple_form_for @story do |form| %>
+
+	<%= form.input :title %>
+	<%= form.input :description %>
+	<%= form.input :link, label: "URL" %>
+
+	<%= form.submit %>
+
+<% end %>
+
+
+<!-- this is called a partial, because this form is used on new and in edit, but it is only part of a webpage -->
+<!-- we've just added the word simple to the top tag, to invoke the gem -->
+<!-- simple form contains label convention and error messages, etc -->
+<!-- Can change the auto labelling (like in link) to URL just by adding new info -->
